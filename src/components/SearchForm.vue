@@ -6,6 +6,8 @@ export default {
     return {
       searchQuery: "",
       errorMessage: "",
+      nextPageUrl: "",
+      prevPageUrl: "",
       characters: [],
     };
   },
@@ -15,8 +17,14 @@ export default {
         const response = await axios.get(
           `https://rickandmortyapi.com/api/character/?name=${this.searchQuery}`
         );
-        this.characters = response.data.results;
+        console.log(response, "response");
         this.errorMessage = "";
+        this.characters = response.data.results;
+        this.nextPageUrl = response.data.info.next;
+        this.prevPageUrl = response.data.info.prev;
+        this.$emit("characters-updated", this.characters);
+        this.$emit("nextPage", this.nextPageUrl);
+        this.$emit("prevPage", this.prevPageUrl);
       } catch (error) {
         this.characters = [];
         this.errorMessage =
@@ -46,9 +54,9 @@ export default {
 <style scoped>
 .container {
   display: flex;
-  justify-content: center;
   flex-direction: column;
   align-items: center;
+  height: fit-content;
 }
 .formWrapper {
   width: 50%;

@@ -69,6 +69,7 @@ export default {
     />
     <SearchResults :characters="characters" />
     <PaginationButtons
+      v-if="characters.length !== 0"
       :nextPage="nextPage"
       :prevPage="prevPage"
       @nextPage="loadNextPage"

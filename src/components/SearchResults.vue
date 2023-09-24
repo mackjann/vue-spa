@@ -7,19 +7,19 @@ export default {
 </script>
 
 <template>
-  <div class="cards-container">
+  <div class="cardsContainer">
     <div
       v-for="character in characters"
       :key="character.id"
-      class="character-card"
+      class="characterCard"
     >
-      <div class="content-container">
+      <div class="contentContainer">
         <img
           :src="character.image"
           :alt="character.name"
-          class="character-image"
+          class="characterImage"
         />
-        <div class="character-info">
+        <div class="characterInfo">
           <h2>{{ character.name }}</h2>
           <p>Species: {{ character.species }}</p>
           <p>Status: {{ character.status }}</p>
@@ -31,15 +31,15 @@ export default {
 
 <style scoped>
 /* Add your CSS styling here */
-.cards-container {
+.cardsContainer {
   display: flex;
   flex-direction: column;
   align-items: center;
 }
-.content-container {
+.contentContainer {
   display: flex;
 }
-.character-card {
+.characterCard {
   display: flex;
   align-items: center;
   border: 1px solid rgb(206, 206, 206);
@@ -48,12 +48,12 @@ export default {
   margin: 4px;
   border-radius: 6px;
 }
-.character-image {
+.characterImage {
   width: 160px;
   height: 160px;
   padding: 12px 12px 12px 12px;
 }
-.character-info {
+.characterInfo {
   display: flex;
   flex-direction: column;
   padding: 12px;

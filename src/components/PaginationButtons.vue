@@ -19,17 +19,18 @@ export default {
 };
 </script>
 <template>
-  <div>
+  <div class="buttonGroup">
     <button @click="goToPrevPage" :disabled="!prevPage">Previous Page</button>
     <button @click="goToNextPage" :disabled="!nextPage">Next Page</button>
   </div>
 </template>
 <style scoped>
-.pagination {
+.buttonGroup {
   display: flex;
   justify-content: center;
   align-items: center;
   margin-top: 20px;
+  padding-bottom: 20px;
 }
 
 button {

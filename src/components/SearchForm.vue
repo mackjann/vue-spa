@@ -24,36 +24,78 @@ export default {
       }
     },
   },
-  watch: {
-    characters: function (newCharacters) {
-      console.log("Characters changed:", newCharacters);
-    },
-  },
 };
 </script>
 
 <template>
-  <div>
-    <form @submit.prevent="searchCharacters">
-      <input
-        v-model="searchQuery"
-        type="text"
-        placeholder="Enter character name"
-      />
-      <button type="submit">Search</button>
-    </form>
-    <div v-if="errorMessage">{{ errorMessage }}</div>
-
-    <div v-if="characters.length > 0">
-      <h2>Search Results</h2>
-      <ul>
-        <li v-for="character in characters" :key="character.id">
-          {{ character.name }} - {{ character.species }} -
-          {{ character.status }}
-        </li>
-      </ul>
+  <div className="container">
+    <div className="formWrapper">
+      <form @submit.prevent="searchCharacters">
+        <input
+          v-model="searchQuery"
+          type="text"
+          placeholder="Enter character name"
+        />
+        <button type="submit">Search</button>
+      </form>
+      <div v-if="errorMessage">{{ errorMessage }}</div>
     </div>
   </div>
 </template>
 
-<style scoped></style>
+<style scoped>
+.container {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+}
+.formWrapper {
+  width: 50%;
+}
+
+h2 {
+  font-size: 20px;
+  margin-top: 20px;
+}
+
+ul {
+  list-style-type: none;
+  padding: 0;
+}
+
+li {
+  margin-bottom: 10px;
+  font-size: 16px;
+}
+
+/* Input and Button Styles */
+form {
+  display: flex;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+input[type="text"] {
+  flex: 1;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-size: 16px;
+}
+
+button[type="submit"] {
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  padding: 10px 20px;
+  margin-left: 10px;
+  cursor: pointer;
+  font-size: 16px;
+}
+
+button[type="submit"]:hover {
+  background-color: #0056b3;
+}
+</style>

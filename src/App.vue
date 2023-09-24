@@ -9,8 +9,15 @@ export default {
 
 <template>
   <div>
+    <h2>Rick and Morty Character Lookup</h2>
     <SearchForm />
   </div>
 </template>
 
-<style scoped></style>
+<style scoped>
+h2 {
+  display: flex;
+  justify-content: center;
+  font-family: sans-serif;
+}
+</style>

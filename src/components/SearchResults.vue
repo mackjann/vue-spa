@@ -54,7 +54,8 @@ export default {
   background-color: rgb(38, 38, 38);
   margin: 4px;
   border-radius: 6px;
-  width: 23%;
+  min-width: 23%;
+  max-width: 100%;
 }
 
 .contentContainer {

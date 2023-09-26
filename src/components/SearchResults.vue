@@ -7,24 +7,26 @@ export default {
 </script>
 
 <template>
-  <div class="cardsContainer">
-    <div
-      v-for="character in characters"
-      :key="character.id"
-      class="characterCard"
-    >
-      <div class="contentContainer">
-        <div class="imageWrapper">
-          <img
-            :src="character.image"
-            :alt="character.name"
-            class="characterImage"
-          />
-        </div>
-        <div class="characterInfo">
-          <h2>{{ character.name }}</h2>
-          <p>Species: {{ character.species }}</p>
-          <p>Status: {{ character.status }}</p>
+  <div class="characterCardsContainer">
+    <div class="characterCards">
+      <div
+        v-for="character in characters"
+        :key="character.id"
+        class="characterCard"
+      >
+        <div class="contentContainer">
+          <div class="imageWrapper">
+            <img
+              :src="character.image"
+              :alt="character.name"
+              class="characterImage"
+            />
+          </div>
+          <div class="characterInfo">
+            <h2>{{ character.name }}</h2>
+            <p>Species: {{ character.species }}</p>
+            <p>Status: {{ character.status }}</p>
+          </div>
         </div>
       </div>
     </div>
@@ -32,11 +34,16 @@ export default {
 </template>
 
 <style scoped>
-.cardsContainer {
+.characterCardsContainer {
+  display: flex;
+  width: 100%;
+  justify-content: center;
+}
+.characterCards {
   display: flex;
   flex-wrap: wrap;
+  max-width: 80%;
   justify-content: center;
-  align-items: flex-start;
 }
 
 .characterCard {
@@ -47,7 +54,7 @@ export default {
   background-color: rgb(38, 38, 38);
   margin: 4px;
   border-radius: 6px;
-  width: 30%;
+  width: 23%;
 }
 
 .contentContainer {

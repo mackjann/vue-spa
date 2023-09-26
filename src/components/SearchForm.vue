@@ -1,5 +1,5 @@
 <script>
-import axios from "axios";
+import { fetchCharacters } from "../helpers";
 
 export default {
   data() {
@@ -13,31 +13,42 @@ export default {
   },
   methods: {
     async searchCharacters() {
+      // Clear previous error message
+      this.errorMessage = "";
+      this.characters = [];
+      this.$emit("characters-updated", this.characters);
       try {
-        const response = await axios.get(
-          `https://rickandmortyapi.com/api/character/?name=${this.searchQuery}`
-        );
-        console.log(response, "response");
-        this.errorMessage = "";
-        this.characters = response.data.results;
-        this.nextPageUrl = response.data.info.next;
-        this.prevPageUrl = response.data.info.prev;
-        this.$emit("characters-updated", this.characters);
-        this.$emit("nextPage", this.nextPageUrl);
-        this.$emit("prevPage", this.prevPageUrl);
+        const url = `https://rickandmortyapi.com/api/character/?name=${this.searchQuery}`;
+        const response = await fetchCharacters(url);
+
+        // Handle specific error for 404 status
+        if (response.error === "No characters found") {
+          this.errorMessage = "No characters found";
+        } else {
+          // Handle other successful responses here
+          this.characters = response.results;
+          this.nextPageUrl = response.info.next;
+          this.prevPageUrl = response.info.prev;
+          this.$emit("characters-updated", this.characters);
+          this.$emit("nextPage", this.nextPageUrl);
+          this.$emit("prevPage", this.prevPageUrl);
+        }
       } catch (error) {
-        this.characters = [];
-        this.errorMessage =
-          "An error occurred while fetching data. Please try again later.";
+        this.errorMessage = error.message;
       }
+    },
+    clearResults() {
+      this.characters = [];
+      this.$emit("characters-updated", this.characters);
+      this.errorMessage = "";
     },
   },
 };
 </script>
 
 <template>
-  <div className="container">
-    <div className="formWrapper">
+  <div class="container">
+    <div class="formWrapper">
       <form @submit.prevent="searchCharacters">
         <input
           v-model="searchQuery"
@@ -45,8 +56,11 @@ export default {
           placeholder="Enter character name"
         />
         <button type="submit">Search</button>
+        <button type="button" @click="clearResults">Clear</button>
       </form>
-      <div v-if="errorMessage">{{ errorMessage }}</div>
+      <div v-if="errorMessage">
+        <p class="errorMessage">{{ errorMessage }}</p>
+      </div>
     </div>
   </div>
 </template>
@@ -60,6 +74,11 @@ export default {
 }
 .formWrapper {
   width: 50%;
+}
+
+.errorMessage {
+  color: rgb(216, 216, 216);
+  font-family: sans-serif;
 }
 
 h2 {
@@ -105,5 +124,20 @@ button[type="submit"] {
 
 button[type="submit"]:hover {
   background-color: #0056b3;
+}
+
+button[type="button"] {
+  background-color: #da0000;
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  padding: 10px 20px;
+  margin-left: 10px;
+  cursor: pointer;
+  font-size: 16px;
+}
+
+button[type="button"]:hover {
+  background-color: #ac0000;
 }
 </style>

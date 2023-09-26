@@ -57,12 +57,15 @@ export default {
     <div class="formWrapper">
       <form @submit.prevent="searchCharacters">
         <input
+          class="searchBox"
           v-model="searchQuery"
           type="text"
           placeholder="Enter character name"
         />
-        <button type="submit">Search</button>
-        <button type="button" @click="clearResults">Clear</button>
+        <div class="buttonGroup">
+          <button type="submit">Search</button>
+          <button type="button" @click="clearResults">Clear</button>
+        </div>
       </form>
       <div v-if="errorMessage">
         <p class="errorMessage">{{ errorMessage }}</p>
@@ -78,8 +81,17 @@ export default {
   align-items: center;
   height: fit-content;
 }
+
 .formWrapper {
   width: 50%;
+}
+
+.searchBox {
+  width: 100%;
+}
+
+.buttonGroup {
+  display: flex;
 }
 
 .errorMessage {
@@ -102,7 +114,6 @@ li {
   font-size: 16px;
 }
 
-/* Input and Button Styles */
 form {
   display: flex;
   align-items: center;
@@ -145,5 +156,33 @@ button[type="button"] {
 
 button[type="button"]:hover {
   background-color: #ac0000;
+}
+
+/* Media Queries */
+@media (max-width: 576px) {
+  form {
+    flex-direction: column;
+  }
+  .formWrapper {
+    display: flex;
+    flex-direction: column;
+    width: 90vw;
+    padding: 0 15px;
+  }
+  .searchBox {
+    width: 100%;
+    margin-bottom: 10px;
+  }
+  .buttonGroup {
+    width: 100%;
+    justify-content: center;
+  }
+  input[type="text"] {
+    font-size: 14px;
+  }
+  button[type="submit"],
+  button[type="button"] {
+    font-size: 14px;
+  }
 }
 </style>

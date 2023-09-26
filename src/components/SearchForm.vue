@@ -44,9 +44,10 @@ export default {
     },
 
     clearResults() {
+      this.errorMessage = "";
+      this.searchQuery = "";
       this.characters = [];
       this.$emit("characters-updated", this.characters);
-      this.errorMessage = "";
     },
   },
 };

@@ -50,9 +50,9 @@ export default {
   display: flex;
   flex-direction: column;
   align-items: center;
-  border: 3px solid rgb(206, 206, 206);
+  box-shadow: 5px 5px 5px rgb(20, 20, 20);
   background-color: rgb(38, 38, 38);
-  margin: 4px;
+  margin: 8px;
   border-radius: 6px;
   width: 20vw;
 }

@@ -28,20 +28,35 @@ export default {
     },
     async loadNextPage(nextPageUrl) {
       if (nextPageUrl) {
-        const response = await fetchCharacters(nextPageUrl);
-        this.updateCharacters(response.data.results);
-        this.updateNextPage(response.data.info.next);
-        this.updatePrevPage(response.data.info.prev);
+        try {
+          const response = await fetchCharacters(nextPageUrl);
+          this.updateCharacters(response.results);
+          this.updateNextPage(response.info.next);
+          this.updatePrevPage(response.info.prev);
+          window.scrollTo({
+            top: 0,
+          });
+        } catch (error) {
+          console.error("Error loading next page:", error);
+        }
       }
     },
-  },
-  async loadPrevPage(prevPageUrl) {
-    if (prevPageUrl) {
-      const response = await fetchCharacters(prevPageUrl);
-      this.updateCharacters(response.data.results);
-      this.updateNextPage(response.data.info.next);
-      this.updatePrevPage(response.data.info.prev);
-    }
+
+    async loadPrevPage(prevPageUrl) {
+      if (prevPageUrl) {
+        try {
+          const response = await fetchCharacters(prevPageUrl);
+          this.updateCharacters(response.results);
+          this.updateNextPage(response.info.next);
+          this.updatePrevPage(response.info.prev);
+          window.scrollTo({
+            top: 0,
+          });
+        } catch (error) {
+          console.error("Error loading previous page:", error);
+        }
+      }
+    },
   },
 };
 </script>
@@ -60,7 +75,7 @@ export default {
       :nextPage="nextPage"
       :prevPage="prevPage"
       @nextPage="loadNextPage"
-      @prevPage="loadNextPage"
+      @prevPage="loadPrevPage"
     />
   </div>
 </template>

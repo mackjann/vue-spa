@@ -18,6 +18,11 @@ export default {
       this.characters = [];
       this.$emit("characters-updated", this.characters);
 
+      if (this.searchQuery.trim() === "") {
+        this.errorMessage = "Please enter a character name to search.";
+        return;
+      }
+
       try {
         const url = `https://rickandmortyapi.com/api/character/?name=${this.searchQuery}`;
         const response = await fetchCharacters(url);

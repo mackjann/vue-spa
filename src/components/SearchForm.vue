@@ -13,19 +13,19 @@ export default {
   },
   methods: {
     async searchCharacters() {
-      // Clear previous error message
+      // Clear previous error message and results
       this.errorMessage = "";
       this.characters = [];
       this.$emit("characters-updated", this.characters);
+
       try {
         const url = `https://rickandmortyapi.com/api/character/?name=${this.searchQuery}`;
         const response = await fetchCharacters(url);
 
         // Handle specific error for 404 status
         if (response.error === "No characters found") {
-          this.errorMessage = "No characters found";
+          this.errorMessage = response.error;
         } else {
-          // Handle other successful responses here
           this.characters = response.results;
           this.nextPageUrl = response.info.next;
           this.prevPageUrl = response.info.prev;
@@ -37,6 +37,7 @@ export default {
         this.errorMessage = error.message;
       }
     },
+
     clearResults() {
       this.characters = [];
       this.$emit("characters-updated", this.characters);

@@ -19,7 +19,7 @@ export default {
       this.$emit("characters-updated", this.characters);
 
       if (this.searchQuery.trim() === "") {
-        this.errorMessage = "Please enter a character name to search.";
+        this.errorMessage = "Please enter a character name to search";
         return;
       }
 

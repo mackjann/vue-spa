@@ -65,7 +65,9 @@ export default {
         />
         <div class="buttonGroup">
           <button type="submit">Search</button>
-          <button type="button" @click="clearResults">Clear</button>
+          <button type="button" class="clear" @click="clearResults">
+            Clear
+          </button>
         </div>
       </form>
       <div v-if="errorMessage">
@@ -129,6 +131,10 @@ input[type="text"] {
   font-size: 16px;
 }
 
+button {
+  width: 90px;
+  width: 95px;
+}
 button[type="submit"] {
   background-color: #007bff;
   color: #fff;
@@ -144,10 +150,10 @@ button[type="submit"]:hover {
   background-color: #0056b3;
 }
 
-button[type="button"] {
-  background-color: #da0000;
-  color: #fff;
-  border: none;
+.clear {
+  background-color: white;
+  color: #0056b3;
+  border: 1px #0056b3 solid;
   border-radius: 4px;
   padding: 10px 20px;
   margin-left: 10px;
@@ -155,8 +161,8 @@ button[type="button"] {
   font-size: 16px;
 }
 
-button[type="button"]:hover {
-  background-color: #ac0000;
+.clear:hover {
+  background-color: #c7c7c7;
 }
 
 /* Media Queries */

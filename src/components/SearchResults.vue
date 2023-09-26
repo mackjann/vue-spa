@@ -42,7 +42,7 @@ export default {
 .characterCards {
   display: flex;
   flex-wrap: wrap;
-  max-width: 80%;
+  width: 100vw;
   justify-content: center;
 }
 
@@ -50,12 +50,11 @@ export default {
   display: flex;
   flex-direction: column;
   align-items: center;
-  border: 1px solid rgb(206, 206, 206);
+  border: 3px solid rgb(206, 206, 206);
   background-color: rgb(38, 38, 38);
   margin: 4px;
   border-radius: 6px;
-  min-width: 23%;
-  max-width: 100%;
+  width: 20vw;
 }
 
 .contentContainer {
@@ -78,7 +77,7 @@ export default {
   flex-direction: column;
   padding: 12px;
   font-family: sans-serif;
-  color: rgb(194, 194, 194);
+  color: rgb(232, 232, 232);
 }
 
 @media (max-width: 576px) {

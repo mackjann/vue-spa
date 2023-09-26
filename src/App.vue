@@ -63,7 +63,7 @@ export default {
 
 <template>
   <div>
-    <h2>Rick and Morty Character Lookup</h2>
+    <h2>Rick and Morty Character Search</h2>
     <SearchForm
       @characters-updated="updateCharacters"
       @nextPage="updateNextPage"
@@ -85,6 +85,9 @@ h2 {
   display: flex;
   justify-content: center;
   font-family: sans-serif;
+  font-weight: 700;
+  text-align: center;
+  font-size: 30px;
   color: rgb(232, 232, 232);
   padding: 24px;
 }
